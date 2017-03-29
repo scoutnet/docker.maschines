@@ -1,0 +1,18 @@
+{
+	"repositories": [
+		{ "type": "composer", "url": "https://composer.typo3.org/" }
+	],
+	"name": "scoutnet/test_environment",
+	"description" : "TYPO3 CMS with phpunit",
+	"license": "GPL-2.0+",
+	"require": {
+		"typo3/cms": "7.x-dev",
+		"phpunit/phpunit": "~4.8.0"
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": "web"
+		}
+	}
+}
