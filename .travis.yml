@@ -8,7 +8,6 @@ services:
 before_install:
     - docker build -t scoutnet/buildhost BuildHost
     - docker build -t scoutnet/cihost CiHost
-    - docker build -t scoutnet/testhost TestHost
 
 script:
     - echo "yes"
@@ -18,5 +17,4 @@ after_success:
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push scoutnet/buildhost;
       docker push scoutnet/cihost;
-      docker push scoutnet/testhost;
       fi
