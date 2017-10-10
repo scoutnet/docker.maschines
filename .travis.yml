@@ -9,6 +9,7 @@ before_install:
     - docker build -t scoutnet/buildhost BuildHost
     - docker build -t scoutnet/cihost CiHost
     - docker build -t scoutnet/devhost DevHost
+    - docker build -t scoutnet/bundlewrap Bundlewrap
 
 script:
     - echo "yes"
@@ -19,4 +20,5 @@ after_success:
       docker push scoutnet/buildhost;
       docker push scoutnet/cihost;
       docker push scoutnet/devhost;
+      docker push scoutnet/bundlewrap;
       fi
