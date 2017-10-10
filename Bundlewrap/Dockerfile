@@ -27,3 +27,6 @@ RUN apt-get update && \
 
 RUN pip3 install wheel
 RUN pip3 install bundlewrap cryptography
+
+ADD test.sh /usr/bin/test.sh
+RUN chmod +x /usr/bin/test.sh
