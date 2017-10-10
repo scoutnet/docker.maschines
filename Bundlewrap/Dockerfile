@@ -27,4 +27,3 @@ RUN apt-get update && \
 
 RUN pip3 install wheel
 RUN pip3 install bundlewrap cryptography
-RUN ssh -o "StrictHostKeyChecking no" git@github.com
