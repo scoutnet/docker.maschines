@@ -7,7 +7,7 @@ pipeline {
                 sh 'docker build -t scoutnet/buildhost BuildHost'
                 sh 'docker build -t scoutnet/cihost CiHost'
                 sh 'docker build -t scoutnet/devhost DevHost'
-                sh 'docker build --no-cache -t scoutnet/bundlewrap Bundlewrap'
+                sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
             }
         }
         stage('Deploy'){
