@@ -26,5 +26,5 @@ RUN apt-get update && \
     apt-get -y install --no-install-recommends python3.5 python3.5-dev python3.5 python3-setuptools python3-pip libssl-dev build-essential libffi-dev sudo git ssh
 
 RUN pip3 install wheel
-RUN pip3 install bundlewrap>=3.1 cryptography
+RUN pip3 install bundlewrap==3.1.0 cryptography==1.8.1
 
