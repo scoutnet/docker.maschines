@@ -13,6 +13,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 if (env.BRANCH_NAME == 'master') {
+                    println 'deploying'
                     sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
                     sh 'docker push scoutnet/buildhost'
                     sh 'docker push scoutnet/cihost'
