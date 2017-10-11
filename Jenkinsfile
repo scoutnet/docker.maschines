@@ -10,14 +10,16 @@ pipeline {
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
             }
         }
-        if (env.BRANCH_NAME == 'master') {
-            stage('Deploy'){
-                steps {
+        stage('Deploy'){
+            steps {
+                if (env.BRANCH_NAME == 'master') {
                     sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
                     sh 'docker push scoutnet/buildhost'
                     sh 'docker push scoutnet/cihost'
                     sh 'docker push scoutnet/devhost'
                     sh 'docker push scoutnet/bundlewrap'
+                } else {
+                    println 'nothing to deploy'
                 }
             }
         }
