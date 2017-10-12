@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+	stage('Test') {
+		steps {
+			print $TAG_NAME
+		}
+	}
         stage('Build'){
             steps {
                 sh 'docker build -t scoutnet/buildhost BuildHost'
