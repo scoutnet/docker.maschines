@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-	stage('test') {
-            steps {
-		sh 'env'
-   	    }
-        }
         stage('Build'){
             steps {
                 sh 'docker build -t scoutnet/buildhost BuildHost'
