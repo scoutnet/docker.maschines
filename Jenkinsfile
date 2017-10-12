@@ -4,7 +4,7 @@ pipeline {
     stages {
 	stage('Test') {
 		steps {
-			print $TAG_NAME
+			sh 'env'
 		}
 	}
         stage('Build'){
