@@ -10,6 +10,11 @@ pipeline {
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
             }
         }
+	stage('Test'){
+            steps {
+                sh 'env'
+            }
+	}
         stage('Deploy'){
             when {
                 expression {
