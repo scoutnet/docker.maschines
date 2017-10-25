@@ -11,6 +11,11 @@ pipeline {
             }
         }
 	stage('Test'){
+            when {
+                expression {
+                   env.TAG_NAME ==~ /(?i)(v[123456789][.][1234567890][.][1234567890])/
+                }
+            }
             steps {
                 sh 'env'
             }
