@@ -39,5 +39,11 @@ pipeline {
                 }
             }
         }
+        stage('Notify') {
+            steps {
+                slackSend color: 'good', message: 'Building DockerImage: Done'
+            }
+        }
+
     }
 }
