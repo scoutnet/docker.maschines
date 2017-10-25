@@ -10,29 +10,19 @@ pipeline {
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
             }
         }
-	stage('Test'){
-            when {
-                expression {
-                   env.TAG_NAME ==~ /(?i)(v[123456789][.][1234567890][.][1234567890])/
-                }
-            }
-            steps {
-                sh 'env'
-            }
-	}
         stage('Deploy'){
             when {
                 expression {
-                   env.BRANCH_NAME == 'master'
+                   env.TAG_NAME ==~ /(?i)(v[1234567890][.][1234567890][.][1234567890])/
                 }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: '89505d3f-4830-48fe-9595-b84743c5bb79', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
-                    sh 'docker push scoutnet/buildhost'
-                    sh 'docker push scoutnet/cihost'
-                    sh 'docker push scoutnet/devhost'
-                    sh 'docker push scoutnet/bundlewrap'
+                    sh 'docker push scoutnet/buildhost:$TAG_NAME'
+                    sh 'docker push scoutnet/cihost:$TAG_NAME'
+                    sh 'docker push scoutnet/devhost:$TAG_NAME'
+                    sh 'docker push scoutnet/bundlewrap:$TAG_NAME'
                 }
             }
         }
