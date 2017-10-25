@@ -16,3 +16,6 @@ RUN apt-get install -y wget && wget https://storage.googleapis.com/golang/go1.8.
 # install github Release Api CLI
 RUN /usr/local/go/bin/go get github.com/aktau/github-release
 env PATH /usr/local/go/bin:/root/go/bin:$PATH
+
+# install zip
+RUN apt-get install -y zip
