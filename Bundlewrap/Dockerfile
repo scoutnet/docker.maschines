@@ -8,6 +8,6 @@ RUN apk add --no-cache --virtual .build-deps gcc musl-dev openssl openssl-dev li
 RUN pip3 install --no-cache-dir bundlewrap==3.6.1 cryptography==2.6.1
 RUN apk del .build-deps gcc musl-dev
 
-RUN apk add sudo
+RUN apk add sudo make
 
 CMD [ "bw" ]
