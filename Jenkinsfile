@@ -8,6 +8,7 @@ pipeline {
                 sh 'docker build -t scoutnet/cihost CiHost'
                 sh 'docker build -t scoutnet/devhost DevHost'
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
+		sh 'echo "current version is $(./Bundlewrap/currentBWVersion.sh)"'
             }
         }
         stage('Deploy'){
@@ -34,8 +35,8 @@ pipeline {
                     sh 'docker tag scoutnet/devhost scoutnet/devhost:$TAG_NAME'
                     sh 'docker push scoutnet/devhost:$TAG_NAME'
 
-                    sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion)'
-                    sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion)'
+                    sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
+                    sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
                 }
             }
         }
