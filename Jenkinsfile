@@ -37,6 +37,9 @@ pipeline {
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
                     sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
+
+                    sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh -m)'
+                    sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh -m)'
                 }
             }
         }
