@@ -23,8 +23,8 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 
 RUN apt-get update && \
-    apt-get -y install --no-install-recommends python3.5 python3.5-dev python3.5 python3-setuptools python3-pip libssl-dev build-essential libffi-dev sudo git ssh
+    apt-get -y install --no-install-recommends python3.7 python3.7-dev python3.7 python3-setuptools python3-pip libssl-dev build-essential libffi-dev sudo git ssh
 
 RUN pip3 install wheel
-RUN pip3 install bundlewrap==3.1.0 cryptography==1.8.1
+RUN pip3 install bundlewrap==3.6.1 cryptography==2.6.1
 

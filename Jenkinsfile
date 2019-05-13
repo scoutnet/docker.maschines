@@ -34,8 +34,8 @@ pipeline {
                     sh 'docker tag scoutnet/devhost scoutnet/devhost:$TAG_NAME'
                     sh 'docker push scoutnet/devhost:$TAG_NAME'
 
-                    sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$TAG_NAME'
-                    sh 'docker push scoutnet/bundlewrap:$TAG_NAME'
+                    sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion)'
+                    sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion)'
                 }
             }
         }
