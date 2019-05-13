@@ -8,7 +8,7 @@ pipeline {
                 sh 'docker build -t scoutnet/cihost CiHost'
                 sh 'docker build -t scoutnet/devhost DevHost'
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
-		sh 'echo "current version is $(./Bundlewrap/currentBWVersion.sh)"'
+		sh 'echo "current Bundlewrap version is $(./Bundlewrap/currentBWVersion.sh)"'
             }
         }
         stage('Deploy'){
