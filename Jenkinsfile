@@ -7,6 +7,8 @@ pipeline {
                 sh 'docker build -t scoutnet/buildhost BuildHost'
                 sh 'docker build -t scoutnet/cihost CiHost'
                 sh 'docker build -t scoutnet/devhost DevHost'
+                sh 'docker build -t scoutnet/php73 PHP/7.3'
+                sh 'docker build -t scoutnet/php74 PHP/7.4'
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
 		sh 'echo "current Bundlewrap version is $(./Bundlewrap/currentBWVersion.sh)"'
             }
@@ -34,6 +36,12 @@ pipeline {
 
                     sh 'docker tag scoutnet/devhost scoutnet/devhost:$TAG_NAME'
                     sh 'docker push scoutnet/devhost:$TAG_NAME'
+
+                    sh 'docker tag scoutnet/php73 scoutnet/php73:$TAG_NAME'
+                    sh 'docker push scoutnet/php73:$TAG_NAME'
+
+                    sh 'docker tag scoutnet/php73 scoutnet/php73:$TAG_NAME'
+                    sh 'docker push scoutnet/php73:$TAG_NAME'
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
                     sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
