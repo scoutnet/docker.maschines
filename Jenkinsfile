@@ -40,8 +40,8 @@ pipeline {
                     sh 'docker tag scoutnet/php73 scoutnet/php73:$TAG_NAME'
                     sh 'docker push scoutnet/php73:$TAG_NAME'
 
-                    sh 'docker tag scoutnet/php73 scoutnet/php73:$TAG_NAME'
-                    sh 'docker push scoutnet/php73:$TAG_NAME'
+                    sh 'docker tag scoutnet/php74 scoutnet/php74:$TAG_NAME'
+                    sh 'docker push scoutnet/php74:$TAG_NAME'
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
                     sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
