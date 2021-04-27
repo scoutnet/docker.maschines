@@ -27,6 +27,8 @@ pipeline {
                     sh 'docker push scoutnet/cihost'
                     sh 'docker push scoutnet/devhost'
                     sh 'docker push scoutnet/bundlewrap'
+                    sh 'docker push scoutnet/php73'
+                    sh 'docker push scoutnet/php74'
 
                     sh 'docker tag scoutnet/buildhost scoutnet/buildhost:$TAG_NAME'
                     sh 'docker push scoutnet/buildhost:$TAG_NAME'
