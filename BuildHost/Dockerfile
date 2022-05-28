@@ -1,4 +1,4 @@
-FROM php:7.0-cli
+FROM php:7.4-cli
 WORKDIR /opt
 
 # install apt dependencies
@@ -10,12 +10,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # install typo3 TER upload client
 RUN /usr/local/bin/composer require namelesscoder/typo3-repository-client
 
-# install Go
-RUN apt-get install -y wget && wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.8.linux-amd64.tar.gz
-
 # install github Release Api CLI
-RUN /usr/local/go/bin/go get github.com/aktau/github-release
-env PATH /usr/local/go/bin:/root/go/bin:$PATH
+RUN apt-get install -y wget && wget https://github.com/github-release/github-release/releases/download/v0.10.0/linux-amd64-github-release.bz2 && bunzip2 linux-amd64-github-release.bz2 && mv linux-amd64-github-release /usr/bin/github-release && chmod +x /usr/bin/github-release
+env PATH /usr/bin:$PATH
 
 # install zip
 RUN apt-get install -y zip
