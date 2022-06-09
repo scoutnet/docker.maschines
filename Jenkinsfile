@@ -7,7 +7,7 @@ pipeline {
                 sh 'docker build -t scoutnet/buildhost BuildHost'
                 // sh 'docker build -t scoutnet/cihost CiHost'
                 sh 'docker build -t scoutnet/devhost DevHost'
-                sh 'docker build -t scoutnet/php73 PHP/7.3'
+                sh 'cd PHP/7.3 && make build'
                 sh 'cd PHP/7.4 && make build'
                 sh 'cd PHP/8.0 && make build'
                 sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
@@ -30,7 +30,7 @@ pipeline {
                     sh 'docker push scoutnet/bundlewrap'
 
                     // PHP
-                    sh 'docker push scoutnet/php73'
+                    sh 'cd PHP/7.3 && make deploy'
                     sh 'cd PHP/7.4 && make deploy'
                     sh 'cd PHP/8.0 && make deploy'
 
