@@ -9,7 +9,7 @@ pipeline {
                 sh 'cd PHP/7.3 && make build'
                 sh 'cd PHP/7.4 && make build'
                 sh 'cd PHP/8.0 && make build'
-                sh 'docker build -t scoutnet/bundlewrap Bundlewrap'
+                sh 'cd Bundlewrap && make build'
                 sh 'echo "current Bundlewrap version is $(./Bundlewrap/currentBWVersion.sh)"'
             }
         }
