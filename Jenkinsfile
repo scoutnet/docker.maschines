@@ -9,6 +9,7 @@ pipeline {
                 sh 'cd PHP/7.3 && make build'
                 sh 'cd PHP/7.4 && make build'
                 sh 'cd PHP/8.0 && make build'
+                sh 'cd PHP/8.1 && make build'
                 sh 'cd Bundlewrap && make build'
                 sh 'echo "current Bundlewrap version is $(./Bundlewrap/currentBWVersion.sh)"'
             }
@@ -31,6 +32,7 @@ pipeline {
                     sh 'cd PHP/7.3 && make deploy'
                     sh 'cd PHP/7.4 && make deploy'
                     sh 'cd PHP/8.0 && make deploy'
+                    sh 'cd PHP/8.1 && make deploy'
 
                     // TAG versions
                     sh 'docker tag scoutnet/buildhost scoutnet/buildhost:$TAG_NAME'
@@ -47,6 +49,9 @@ pipeline {
 
                     sh 'docker tag scoutnet/php80 scoutnet/php80:$TAG_NAME'
                     sh 'docker push scoutnet/php80:$TAG_NAME'
+
+                    sh 'docker tag scoutnet/php81 scoutnet/php81:$TAG_NAME'
+                    sh 'docker push scoutnet/php81:$TAG_NAME'
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
                     sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
