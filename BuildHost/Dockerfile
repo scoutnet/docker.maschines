@@ -16,3 +16,6 @@ env PATH /usr/bin:$PATH
 
 # install zip
 RUN apt-get install -y zip
+
+# do not discuss about security in git folder
+RUN git config --global --add safe.directory /opt/data
