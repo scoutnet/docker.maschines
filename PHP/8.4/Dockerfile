@@ -1,5 +1,8 @@
 FROM php:8.4-alpine
-MAINTAINER Stefan "Mütze" Horst <muetze@scoutnet.de>
+
+LABEL org.opencontainers.image.vendor="ScoutNet.de"
+LABEL org.opencontainers.image.authors="Stefan Mütze Horst <muetze@scoutnet.de>"
+
 WORKDIR /opt
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -27,12 +30,10 @@ RUN apk add --no-cache \
         opcache \
         pdo_mysql \
         pdo_pgsql \
-        pdo_sqlsrv \
         pgsql \
         pspell \
         redis \
         soap \
-        sqlsrv \
         sysvsem \
         xdebug \
         zip \
