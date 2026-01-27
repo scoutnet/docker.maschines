@@ -71,11 +71,17 @@ pipeline {
                 }
             }
         }
-        stage('Notify') {
-            steps {
-                slackSend color: 'good', message: 'Building DockerImage: Done'
+    }
+    post {
+        always {
+            script {
+                if (currentBuild.currentResult == 'FAILURE') {
+                    color = 'danger'
+                } else {
+                    color = 'good'
+                }
+                slackSend color: color, message: "<${env.JOB_URL}|${env.JOB_NAME}>: Build ${currentBuild.currentResult}"
             }
         }
-
     }
 }
