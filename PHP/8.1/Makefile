@@ -20,3 +20,6 @@ deploy: build
 	docker manifest create ${ORG}/${IMAGE_NAME}:${TAG} -a ${ORG}/${IMAGE_NAME}:${TAG}-arm64v8 -a ${ORG}/${IMAGE_NAME}:${TAG}-amd64
 	# upload manifest
 	docker manifest push ${ORG}/${IMAGE_NAME}:${TAG}
+
+	# download manifest to have it localy
+	docker pull ${ORG}/${IMAGE_NAME}:${TAG}

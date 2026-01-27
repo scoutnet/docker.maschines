@@ -16,19 +16,33 @@ tag_minor: build
 	docker tag ${ORG}/${IMAGE_NAME}:${TAG}-arm64v8 ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-arm64v8
 	docker tag ${ORG}/${IMAGE_NAME}:${TAG}-amd64 ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-amd64
 
-deploy: build tag_minor
+tag_latest: build
+	# Tag with latest
+	docker tag ${ORG}/${IMAGE_NAME}:${TAG}-arm64v8 ${ORG}/${IMAGE_NAME}:latest-arm64v8
+	docker tag ${ORG}/${IMAGE_NAME}:${TAG}-amd64 ${ORG}/${IMAGE_NAME}:latest-amd64
+
+deploy: build tag_minor tag_latest
 	# upload M1 version
 	docker push ${ORG}/${IMAGE_NAME}:${TAG}-arm64v8
 	docker push ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-arm64v8
+	docker push ${ORG}/${IMAGE_NAME}:latest-arm64v8
 
 	# upload x86_64 version
 	docker push ${ORG}/${IMAGE_NAME}:${TAG}-amd64
 	docker push ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-amd64
+	docker push ${ORG}/${IMAGE_NAME}:latest-amd64
 
 	# Create manifests
 	docker manifest create ${ORG}/${IMAGE_NAME}:${TAG} -a ${ORG}/${IMAGE_NAME}:${TAG}-arm64v8 -a ${ORG}/${IMAGE_NAME}:${TAG}-amd64
 	docker manifest create ${ORG}/${IMAGE_NAME}:${MINOR_TAG} -a ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-arm64v8 -a ${ORG}/${IMAGE_NAME}:${MINOR_TAG}-amd64
+	docker manifest create ${ORG}/${IMAGE_NAME}:latest -a ${ORG}/${IMAGE_NAME}:latest-arm64v8 -a ${ORG}/${IMAGE_NAME}:latest-amd64
 
 	# upload manifests
 	docker manifest push ${ORG}/${IMAGE_NAME}:${TAG}
 	docker manifest push ${ORG}/${IMAGE_NAME}:${MINOR_TAG}
+	docker manifest push ${ORG}/${IMAGE_NAME}:latest
+
+	# fetch manifests
+	docker pull ${ORG}/${IMAGE_NAME}:${TAG}
+	docker pull ${ORG}/${IMAGE_NAME}:${MINOR_TAG}
+	docker pull ${ORG}/${IMAGE_NAME}:latest
