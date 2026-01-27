@@ -28,7 +28,6 @@ pipeline {
 
                     sh 'docker push scoutnet/buildhost'
                     sh 'docker push scoutnet/devhost'
-                    sh 'docker push scoutnet/bundlewrap'
 
                     // PHP
                     sh 'cd PHP/7.3 && make deploy'
@@ -37,6 +36,9 @@ pipeline {
                     sh 'cd PHP/8.1 && make deploy'
                     sh 'cd PHP/8.2 && make deploy'
                     sh 'cd PHP/8.3 && make deploy'
+
+                    // Bundlewrap
+                    sh 'cd Bundlewrap && make deploy'
 
                     // TAG versions
                     sh 'docker tag scoutnet/buildhost scoutnet/buildhost:$TAG_NAME'
