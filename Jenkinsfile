@@ -69,10 +69,10 @@ pipeline {
                     sh 'docker tag scoutnet/php83 scoutnet/php83:$TAG_NAME'
                     sh 'docker push scoutnet/php83:$TAG_NAME'
 
-                    sh 'docker tag scoutnet/php84 scoutnet/php83:$TAG_NAME'
+                    sh 'docker tag scoutnet/php84 scoutnet/php84:$TAG_NAME'
                     sh 'docker push scoutnet/php84:$TAG_NAME'
 
-                    sh 'docker tag scoutnet/php85 scoutnet/php83:$TAG_NAME'
+                    sh 'docker tag scoutnet/php85 scoutnet/php85:$TAG_NAME'
                     sh 'docker push scoutnet/php85:$TAG_NAME'
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh)'
