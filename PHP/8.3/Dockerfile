@@ -8,6 +8,7 @@ RUN apk add --no-cache \
     bash \
     file \
     git \
+    ca-certificates \
     graphicsmagick \
     grep \
     && chmod +x /usr/local/bin/install-php-extensions \
