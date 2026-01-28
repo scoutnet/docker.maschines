@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: '89505d3f-4830-48fe-9595-b84743c5bb79', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN'), usernamePassword(credentialsId: '89505d3f-4830-48fe-9595-b84743c5bb79', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
 
                     sh 'docker push scoutnet/buildhost'
@@ -80,6 +80,9 @@ pipeline {
 
                     sh 'docker tag scoutnet/bundlewrap scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh -m)'
                     sh 'docker push scoutnet/bundlewrap:$(./Bundlewrap/currentBWVersion.sh -m)'
+
+                    // Create Release
+                    sh 'docker run --rm -e GITHUB_TOKEN -w /opt/data -v `pwd`:/opt/data -i scoutnet/buildhost:latest github-release release -t $(TAG_NAME) -d "Release of version $(TAG_NAME)<br><br>$(COMMIT_MESSAGE)"'
                 }
             }
         }
